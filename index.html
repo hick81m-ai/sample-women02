@@ -3,588 +3,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OlyLife Shaken Massager | 50代からの「巻くだけ」20分ケア習慣</title>
-    <meta name="description" content="運動ゼロ、食事制限なし。1日20分、腰に巻くだけ。介護・子育て・更年期の変化に寄り添う、次世代PEMFケアデバイス。">
+    <title>OlyLife Shaken Massager | アラフィフからの「巻くだけ」ボディケア習慣</title>
+    <meta name="description" content="運動ゼロ、食事制限なし。1日20分、腰に巻くだけ。介護・子育て・体調変化…忙しいあなたの毎日に寄り添うPEMFケア。">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --warm:    #fdfaf6;
-            --orange:  #e8722a;
-            --green:   #4d9168;
-            --teal:    #3d93a8;
-            --purple:  #8b6fc0;
-            --line:    #06C755;
+            --brand-warm: #fdfaf6;
+            --brand-orange: #f07c3c;
+            --brand-green: #5a9e6f;
+            --brand-teal: #4a9ead;
+            --brand-purple: #9b7ec8;
+            --brand-pink: #e07c8a;
+            --line-color: #06C755;
         }
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background: var(--warm);
-            color: #2e2e2e;
+            background-color: var(--brand-warm);
+            color: #333;
             scroll-behavior: smooth;
         }
-        .serif { font-family: 'Noto Serif JP', serif; }
+        .font-serif { font-family: 'Noto Serif JP', serif; }
 
-        /* animations */
-        .reveal { opacity:0; transform:translateY(24px); transition: all .8s ease-out; }
-        .reveal.active { opacity:1; transform:translateY(0); }
-        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-        .float-anim { animation: floatY 3s ease-in-out infinite; }
-        @keyframes pulse-green {
-            0%   { box-shadow: 0 0 0 0   rgba(6,199,85,.45); }
-            70%  { box-shadow: 0 0 0 16px rgba(6,199,85,0);  }
-            100% { box-shadow: 0 0 0 0   rgba(6,199,85,0);   }
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.8s ease-out;
         }
-        .pulse { animation: pulse-green 2.2s ease-out infinite; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* bg helpers */
-        .bg-warm    { background: linear-gradient(135deg,#fdfaf6,#fef2e5); }
-        .bg-teal-s  { background: linear-gradient(135deg,#edf8f9,#daeef2); }
-        .bg-green-s { background: linear-gradient(135deg,#eef7f1,#dff0e6); }
-        .bg-orange-s{ background: linear-gradient(135deg,#fef4ed,#fde8d4); }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-btn { animation: float 3s ease-in-out infinite; }
 
-        /* cards */
-        .card  { border-radius:18px; padding:28px; background:#fff; box-shadow:0 4px 22px rgba(0,0,0,.07); }
-        .card-t{ border-radius:18px; padding:28px; background:#fff; box-shadow:0 4px 22px rgba(0,0,0,.07); border-top:4px solid; }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(6,199,85,0.4); }
+            70% { box-shadow: 0 0 0 14px rgba(6,199,85,0); }
+            100% { box-shadow: 0 0 0 0 rgba(6,199,85,0); }
+        }
+        .pulse-btn { animation: pulse-ring 2s ease-out infinite; }
 
-        /* tag pill */
-        .pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 11px; border-radius:20px; margin:2px; }
+        /* ===== SECTION COLORS ===== */
+        .bg-warm { background: linear-gradient(135deg, #fdfaf6 0%, #fef3ea 100%); }
+        .bg-teal-soft { background: linear-gradient(135deg, #eef8f9 0%, #dff0f2 100%); }
+        .bg-green-soft { background: linear-gradient(135deg, #f0f7f2 0%, #e3f2e8 100%); }
+        .bg-purple-soft { background: linear-gradient(135deg, #f5f0fb 0%, #ede4f7 100%); }
 
-        /* icon circle */
-        .ic { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+        /* ===== CARD STYLES ===== */
+        .card-shadow { box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+        .problem-card { border-radius: 20px; padding: 32px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .tech-card { border-radius: 16px; padding: 28px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .mode-card { border-radius: 16px; padding: 32px; background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border-top: 4px solid; }
 
-        /* LINE button */
+        /* ===== TAG STYLES ===== */
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin: 3px 2px;
+        }
+
+        /* ===== FAQ ===== */
+        details summary::-webkit-details-marker { display: none; }
+        details summary { cursor: pointer; list-style: none; }
+        details[open] .faq-icon { transform: rotate(45deg); background: #f07c3c; color: #fff; }
+        .faq-icon { transition: all 0.3s; width: 28px; height: 28px; border-radius: 50%; border: 2px solid #f07c3c; color: #f07c3c; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; font-weight: 300; line-height: 1; }
+
+        /* ===== CTA BUTTON ===== */
         .btn-line {
-            background: var(--line);
-            color:#fff; border-radius:50px; font-weight:700;
-            display:flex; align-items:center; justify-content:center; gap:10px;
-            transition: all .3s;
+            background: var(--line-color);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s;
         }
-        .btn-line:hover { filter:brightness(1.08); transform:translateY(-2px); }
+        .btn-line:hover { filter: brightness(1.08); transform: translateY(-2px); }
 
-        /* care banner */
+        /* ===== CARE BANNER ===== */
         .care-banner {
-            background: linear-gradient(135deg, #4d9168, #3d93a8);
-            border-radius:18px; padding:36px; color:#fff;
+            background: linear-gradient(135deg, #5a9e6f 0%, #4a9ead 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: #fff;
         }
 
-        /* spec table */
-        .spec-tbl td { padding:14px 20px; font-size:15px; line-height:1.9; border-bottom:1px solid #eee; }
-        .spec-tbl td:first-child { font-weight:700; color:#666; width:38%; font-size:13px; letter-spacing:.04em; }
-        .spec-tbl tr:nth-child(even) td { background:#f9f9f9; }
+        /* ===== SPEC TABLE ===== */
+        .spec-table tr:nth-child(even) { background: #f9f9f9; }
+        .spec-table td { padding: 14px 20px; font-size: 15px; line-height: 1.8; border-bottom: 1px solid #eee; }
+        .spec-table td:first-child { font-weight: 700; color: #666; width: 40%; font-size: 13px; }
 
-        /* body text sizes */
-        .t-body  { font-size:16px; line-height:2;   }
-        .t-lg    { font-size:17px; line-height:2.1; }
-        .t-xl    { font-size:18px; line-height:2.1; }
+        /* text size helpers */
+        .text-body { font-size: 16px; line-height: 2; }
+        .text-body-lg { font-size: 17px; line-height: 2.1; }
+        .text-body-xl { font-size: 18px; line-height: 2.1; }
 
-        /* FAQ */
-        details summary::-webkit-details-marker { display:none; }
-        details summary { cursor:pointer; list-style:none; }
-        .faq-ic {
-            width:30px; height:30px; border-radius:50%;
-            border:2px solid var(--orange); color:var(--orange);
-            display:flex; align-items:center; justify-content:center;
-            font-size:20px; font-weight:300; flex-shrink:0;
-            transition: all .3s;
+        /* sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
         }
-        details[open] .faq-ic { background:var(--orange); color:#fff; }
-
-        /* sticky LINE */
-        #sticky-line { position:fixed; bottom:22px; right:22px; z-index:200; }
-
-        /* urgency bar */
-        .urgency { background: linear-gradient(90deg, #e8722a, #d45a18); color:#fff; }
-
-        /* highlight box */
-        .hl-box { border-left:4px solid var(--orange); background:#fff8f4; border-radius:0 12px 12px 0; padding:20px 24px; }
-
-        /* before/after number */
-        .stat-num { font-size:48px; font-weight:900; line-height:1; font-family:'Noto Serif JP',serif; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-<!-- ===== URGENCY BAR ===== -->
-<div class="urgency text-center py-2.5 px-4">
-    <p class="text-sm font-bold tracking-wide">
-        <svg class="inline w-4 h-4 mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        現在、世界的な需要増により <strong>1〜2ヶ月待ち</strong> が発生しています。お早めにご相談ください。
-    </p>
-</div>
-
-<!-- ===== HEADER ===== -->
-<header class="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-    <div class="max-w-5xl mx-auto px-5 py-3.5 flex justify-between items-center">
-        <span class="text-lg font-bold tracking-tight text-gray-800">OlyLife <span class="text-green-600">Shaken</span></span>
-        <a href="#contact" class="btn-line px-6 py-2.5 text-sm shadow-lg pulse">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
-            LINEで相談する
-        </a>
-    </div>
-</header>
-
-<!-- ===== HERO ===== -->
-<section class="pt-10 pb-16 md:pt-16 md:pb-24 bg-warm overflow-hidden">
-    <div class="max-w-5xl mx-auto px-5 flex flex-col md:flex-row items-center gap-12">
-        <div class="md:w-1/2">
-            <div class="inline-block px-4 py-1.5 bg-orange-100 text-orange-600 rounded-full text-sm font-bold mb-6">
-                50代主婦のための、頑張らないボディケア
-            </div>
-            <h1 class="serif text-4xl md:text-[2.8rem] leading-[1.55] mb-6 text-gray-800">
-                毎日忙しいのに、<br>
-                なぜか<span class="text-orange-500">お腹まわりだけ</span><br>
-                変わらない——<br>
-                <span class="text-gray-500 text-3xl">そのお悩み、解決できます。</span>
-            </h1>
-            <p class="t-xl text-gray-600 mb-8">
-                運動ゼロ、食事制限なし。テレビを見ながら・家事の合間に・眠る前に。<br>
-                腰に巻いてスイッチを押すだけで、次世代PEMFが<strong>お腹の深部から</strong>ケアをはじめます。
-            </p>
-            <div class="care-banner mb-8">
-                <div class="flex items-start gap-3 mb-3">
-                    <svg class="w-6 h-6 mt-0.5 flex-shrink-0 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                    <p class="text-lg font-bold">介護・子育て・更年期の変化…<br>毎日頑張るあなたに、寄り添うケアを。</p>
-                </div>
-                <p class="t-body opacity-90">親の介護、子育て、ホルモンバランスの変化による体調の不安——。自分のことは後回しにしてきたあなたの体を、たった20分だけ、Shakenが丁寧にサポートします。</p>
-            </div>
-            <a href="#contact" class="btn-line px-10 py-5 t-xl shadow-2xl float-anim w-full md:w-auto">
-                <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
-                公式LINEで詳細を見る（無料）
+    <!-- ===== HEADER ===== -->
+    <header class="fixed w-full z-50 bg-white/85 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
+            <span class="text-lg font-bold tracking-tight text-gray-800">OlyLife <span class="text-green-600">Shaken</span></span>
+            <a href="#contact" class="btn-line px-6 py-2.5 text-sm shadow-lg pulse-btn">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
+                LINEで相談する
             </a>
-            <p class="mt-3 text-sm text-gray-400 text-center md:text-left">無理な勧誘は一切ありません。お気軽にどうぞ。</p>
         </div>
-        <div class="md:w-1/2 relative">
-            <div class="rounded-3xl overflow-hidden shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-700">
-                <img src="https://raw.githubusercontent.com/hick81m-ai/sample_CEO/main/assets/AOT_women.png" alt="OlyLife Shaken Massagerを使用する女性" class="w-full h-auto">
-            </div>
-            <div class="absolute -top-6 -right-6 w-32 h-32 bg-orange-200 rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
-            <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-teal-200 rounded-full mix-blend-multiply filter blur-2xl opacity-50"></div>
-        </div>
-    </div>
-</section>
+    </header>
 
-<!-- ===== PROBLEM ===== -->
-<section class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-5">
-        <div class="text-center mb-14 reveal">
-            <h2 class="serif text-2xl md:text-3xl mb-4 text-gray-800">「最近、何をやっても変わらない……」</h2>
-            <p class="t-body text-gray-500">50代になってから、こんな悩みが増えていませんか？</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-
-            <div class="card reveal" style="border-top:4px solid #e8722a;">
-                <div class="ic bg-orange-100 mb-5">
-                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+    <!-- ===== HERO ===== -->
+    <section class="pt-24 pb-16 md:pt-32 md:pb-24 bg-warm overflow-hidden">
+        <div class="max-w-5xl mx-auto px-5 flex flex-col md:flex-row items-center gap-10">
+            <div class="md:w-1/2">
+                <div class="inline-block px-4 py-1.5 bg-orange-100 text-orange-600 rounded-full text-sm font-bold mb-6">
+                    頑張らなくていい、新しいボディケア
                 </div>
-                <h3 class="text-xl font-bold mb-3">お腹まわりが落ちない</h3>
-                <p class="t-body text-gray-600">食事に気をつけているのに、お腹・腰まわりだけがどんどん厚くなる。鏡を見るたびにため息が出る……。</p>
-            </div>
-
-            <div class="card reveal" style="border-top:4px solid #4d9168; transition-delay:.1s;">
-                <div class="ic bg-green-100 mb-5">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <h1 class="font-serif text-4xl md:text-5xl leading-[1.5] mb-6 text-gray-800">
+                    もう、無理しなくていい。<br>
+                    <span class="text-orange-500">腰に巻くだけ</span>の<br>
+                    20分ケア習慣。
+                </h1>
+                <p class="text-body-xl text-gray-600 mb-8">
+                    運動ゼロ、食事制限なし。テレビを見ながら・家事の合間に・眠る前に。<br>
+                    次世代PEMFテクノロジーが、お腹・腰まわりをお家でケアします。
+                </p>
+                <!-- 介護・子育て・体調変化への共感バナー -->
+                <div class="care-banner mb-8">
+                    <p class="text-lg font-bold mb-3">介護・子育て・更年期の変化…<br>忙しいあなたに、寄り添うケアを。</p>
+                    <p class="text-sm opacity-90 leading-relaxed">親の介護、子育て、ホルモンバランスの変化による体調の不安。日々のストレスや疲れを抱えながら頑張っているあなたの体を、20分間だけ、Shakenが丁寧にサポートします。</p>
                 </div>
-                <h3 class="text-xl font-bold mb-3">腰の重だるさが続く</h3>
-                <p class="t-body text-gray-600">家事・介護・立ち仕事で腰がつらい。マッサージに行く時間もなく、痛みをだましだまし過ごしている。</p>
+                <a href="#contact" class="btn-line px-10 py-5 text-lg shadow-2xl float-btn w-full md:w-auto">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
+                    公式LINEで詳細を見る
+                </a>
             </div>
-
-            <div class="card reveal" style="border-top:4px solid #3d93a8; transition-delay:.2s;">
-                <div class="ic bg-teal-100 mb-5">
-                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <div class="md:w-1/2 relative">
+                <div class="rounded-3xl overflow-hidden shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://raw.githubusercontent.com/hick81m-ai/sample_CEO/main/assets/AOT_women.png" alt="OlyLife Shaken Massagerを使用する女性" class="w-full h-auto">
                 </div>
-                <h3 class="text-xl font-bold mb-3">冷え・更年期の不安</h3>
-                <p class="t-body text-gray-600">下半身が冷えてむくみやすい。生理不順・気分の波・睡眠の乱れ。ホルモンバランスの変化がこわい。</p>
+                <div class="absolute -top-6 -right-6 w-32 h-32 bg-orange-200 rounded-full mix-blend-multiply filter blur-2xl opacity-60"></div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-green-200 rounded-full mix-blend-multiply filter blur-2xl opacity-60"></div>
             </div>
-
         </div>
-        <div class="reveal bg-orange-50 border border-orange-100 rounded-3xl p-8 md:p-10 text-center">
-            <p class="text-xl md:text-2xl font-bold text-orange-800 leading-relaxed">
-                それは、あなたの努力不足ではありません。<br>
-                50代の体の変化に、<span class="underline decoration-orange-400 underline-offset-4">従来のダイエット・運動が追いついていないだけ</span>です。<br>
-                今必要なのは、細胞の深部から整える新しいアプローチ。
+    </section>
+
+    <!-- ===== PROBLEM ===== -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-5">
+            <div class="text-center mb-14 reveal">
+                <h2 class="font-serif text-2xl md:text-3xl mb-4 text-gray-800">「最近、何をやっても変わらない…」</h2>
+                <p class="text-body text-gray-500">アラフィフになってから、こんな悩みが増えていませんか？</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="problem-card reveal text-center" style="border-top: 4px solid #f07c3c;">
+                    <div class="text-5xl mb-5">😫</div>
+                    <h3 class="text-xl font-bold mb-3">お腹まわりが落ちない</h3>
+                    <p class="text-body text-gray-600">食べる量は変えていないのに、お腹・腰まわりだけが気になる。お気に入りの洋服が入らなくなってきた…</p>
+                </div>
+                <div class="problem-card reveal text-center" style="border-top: 4px solid #5a9e6f; transition-delay: 0.1s;">
+                    <div class="text-5xl mb-5">🩹</div>
+                    <h3 class="text-xl font-bold mb-3">腰の重だるさが続く</h3>
+                    <p class="text-body text-gray-600">家事・育児・介護の毎日で腰がつらい。マッサージに行く時間もお金も毎回はかけられない。</p>
+                </div>
+                <div class="problem-card reveal text-center" style="border-top: 4px solid #4a9ead; transition-delay: 0.2s;">
+                    <div class="text-5xl mb-5">🌡️</div>
+                    <h3 class="text-xl font-bold mb-3">冷え・更年期の不安</h3>
+                    <p class="text-body text-gray-600">お腹が冷えてむくみやすい。ホルモンバランスの変化で生理トラブルや体調の波が増えてきた。</p>
+                </div>
+            </div>
+            <div class="reveal bg-orange-50 border border-orange-100 rounded-3xl p-8 text-center">
+                <p class="text-xl font-bold text-orange-800 leading-relaxed">
+                    それは、あなたの努力不足ではありません。<br>
+                    アラフィフ以降の体の変化に、<br class="md:hidden">従来のダイエットが追いついていないだけ。<br>
+                    必要なのは、<span class="underline decoration-orange-400">細胞の深部からアプローチする新しいケア</span>です。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CARE MESSAGE ===== -->
+    <section class="py-20 bg-teal-soft">
+        <div class="max-w-5xl mx-auto px-5">
+            <div class="reveal text-center mb-12">
+                <h2 class="font-serif text-2xl md:text-3xl text-gray-800 mb-4">介護・子育て・自分の体調変化…<br>あなたの「しんどさ」に、寄り添いたい。</h2>
+                <p class="text-body-lg text-gray-600 max-w-2xl mx-auto">毎日誰かのために頑張っているあなたが、自分自身のケアを後回しにしていませんか？Shakenは、そんな忙しいあなたの毎日にそっと寄り添います。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="tech-card reveal text-center">
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-5">👵</div>
+                    <h3 class="text-xl font-bold mb-3 text-teal-700">介護しながら使える</h3>
+                    <p class="text-body text-gray-600">親の介護で自分の時間がない方へ。腰に巻いたまま動けるので、介護の合間にも自分のケアを続けられます。</p>
+                </div>
+                <div class="tech-card reveal text-center" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-5">👶</div>
+                    <h3 class="text-xl font-bold mb-3 text-green-700">子育て中でも続けられる</h3>
+                    <p class="text-body text-gray-600">お子さんと過ごしながら使えるハンズフリー設計。静音設計なのでお昼寝中にも安心して使えます。</p>
+                </div>
+                <div class="tech-card reveal text-center" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-3xl mx-auto mb-5">🌸</div>
+                    <h3 class="text-xl font-bold mb-3 text-purple-700">更年期・体調変化に寄り添う</h3>
+                    <p class="text-body text-gray-600">ホルモンバランスの変化による冷え・生理トラブル・気分の波。温熱モードとPEMFが体の内側からサポートします。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLUTION ===== -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-5">
+            <div class="text-center mb-14 reveal">
+                <span class="text-sm font-bold tracking-widest text-green-600 uppercase block mb-3">Next Generation PEMF Device</span>
+                <h2 class="font-serif text-2xl md:text-3xl text-gray-800 mb-4">7つのテクノロジーを1台に凝縮。<br>お家でサロン級のケアを。</h2>
+                <p class="text-body-lg text-gray-600 max-w-2xl mx-auto">OlyLife Shaken Massagerは次世代PEMFスマートデバイス。フォーカス超音波・振動・温熱・RFラジオ波・赤外線・エアバッグマッサージ・PEMFを1台に搭載し、お腹・腰まわりを集中ケアします。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <!-- PEMF -->
+                <div class="tech-card reveal" style="border-left: 4px solid #5a9e6f;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 text-2xl">⚡</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">PEMF（パルス電磁界）</h3>
+                            <p class="text-body text-gray-600 mb-3">7.8Hz超低周波PEMFが体内<strong>20cm</strong>の深部に届き、ミトコンドリアを活性化。腰痛・冷え・腸の不調・婦人科系・生理痛のケアをサポートします。</p>
+                            <span class="tag bg-green-100 text-green-700">深部20cm</span>
+                            <span class="tag bg-green-100 text-green-700">7.8Hz超低周波</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 超音波 -->
+                <div class="tech-card reveal" style="border-left: 4px solid #4a9ead; transition-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0 text-2xl">🔊</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">フォーカス超音波</h3>
+                            <p class="text-body text-gray-600 mb-3">CellBreak™技術による1MHzの超音波が皮下脂肪層（10〜20mm）をターゲット。脂肪細胞膜を解離し、お腹まわりの深層脂肪に直接アプローチします。</p>
+                            <span class="tag bg-teal-100 text-teal-700">脂肪層10〜20mm</span>
+                            <span class="tag bg-teal-100 text-teal-700">1MHz</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- RF + 赤外線 -->
+                <div class="tech-card reveal" style="border-left: 4px solid #9b7ec8; transition-delay: 0.15s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 text-2xl">✨</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">RFラジオ波 ＋ 赤外線</h3>
+                            <p class="text-body text-gray-600 mb-3">RFが皮膚下3〜5mmに届き、コラーゲン再生・たるみケア・肌のハリをサポート。赤外線は妊娠線・傷跡の改善にも対応します。</p>
+                            <span class="tag bg-purple-100 text-purple-700">コラーゲン再生</span>
+                            <span class="tag bg-purple-100 text-purple-700">たるみケア</span>
+                            <span class="tag bg-purple-100 text-purple-700">妊娠線ケア</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- マッサージ + 温熱 + 振動 -->
+                <div class="tech-card reveal" style="border-left: 4px solid #f07c3c; transition-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0 text-2xl">🌡️</div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">温熱 ＋ 振動 ＋ マッサージ</h3>
+                            <p class="text-body text-gray-600 mb-3">熱浸透で腹部の血行・脂肪代謝を促進。エアバッグが加圧・解放を繰り返してハンドマッサージを再現。高周波振動がウエストラインを整えます。</p>
+                            <span class="tag bg-orange-100 text-orange-700">血行促進</span>
+                            <span class="tag bg-orange-100 text-orange-700">代謝アップ</span>
+                            <span class="tag bg-orange-100 text-orange-700">ライン整え</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3 MODES ===== -->
+    <section class="py-20 bg-green-soft">
+        <div class="max-w-5xl mx-auto px-5">
+            <div class="text-center mb-14 reveal">
+                <h2 class="font-serif text-2xl md:text-3xl text-gray-800 mb-3">目的で選べる 3つのモード＋AIモード</h2>
+                <p class="text-body text-gray-500">ボタン1つで切り替えられます</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="mode-card reveal" style="border-color: #f07c3c;">
+                    <p class="text-xs font-bold tracking-widest text-orange-500 mb-3 uppercase">7-in-1 · Body Shaping</p>
+                    <h3 class="text-xl font-bold mb-2">ボディシェイプ<br>モード</h3>
+                    <p class="text-sm font-bold text-orange-500 mb-4">脂肪燃焼・ボディシェイプ</p>
+                    <p class="text-body text-gray-600 mb-4">7テクノロジー全搭載でお腹・腰まわりの脂肪に集中アプローチ。体型を整えたい方に。</p>
+                    <p class="text-xs text-gray-400">PEMF・温熱・超音波・マッサージ・振動・RFラジオ波・赤外線</p>
+                </div>
+                <div class="mode-card reveal" style="border-color: #5a9e6f; transition-delay: 0.1s;">
+                    <p class="text-xs font-bold tracking-widest text-green-600 mb-3 uppercase">5D Deep · Massage</p>
+                    <h3 class="text-xl font-bold mb-2">マッサージ<br>モード</h3>
+                    <p class="text-sm font-bold text-green-600 mb-4">腰痛・内臓ケア・婦人科系</p>
+                    <p class="text-body text-gray-600 mb-4">PEMFが深部から整えます。腰痛・腸の不調・婦人科系ケア・疲れた夜の回復に。</p>
+                    <p class="text-xs text-gray-400">PEMF・マッサージ・振動・温熱・RFラジオ波</p>
+                </div>
+                <div class="mode-card reveal" style="border-color: #4a9ead; transition-delay: 0.2s;">
+                    <p class="text-xs font-bold tracking-widest text-teal-600 mb-3 uppercase">2-Effect · Heat</p>
+                    <h3 class="text-xl font-bold mb-2">温熱<br>モード</h3>
+                    <p class="text-sm font-bold text-teal-600 mb-4">冷え・生理ケア・更年期</p>
+                    <p class="text-body text-gray-600 mb-4">お腹をじんわり温めながら血行を促進。冷え・生理痛・更年期の不快感のケアに。</p>
+                    <p class="text-xs text-gray-400">PEMF・温熱</p>
+                </div>
+            </div>
+            <!-- AI Mode -->
+            <div class="reveal bg-white rounded-2xl p-8 md:p-10 card-shadow">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-shrink-0">
+                        <p class="text-xs font-bold tracking-widest text-purple-600 mb-2 uppercase">AI Mode · OlyWatch連携</p>
+                        <h3 class="font-serif text-2xl text-gray-800 leading-relaxed">千人千体。<br>AIが私に<br>合わせてくれる。</h3>
+                    </div>
+                    <div class="md:border-l border-gray-200 md:pl-8 flex-1">
+                        <p class="text-body-lg text-gray-600">付属の<strong>OlyWatch</strong>をBluetooth接続すると、AIモードが起動。心拍数・血中酸素濃度・睡眠の質などを計測し、その日の体調に合わせた<strong>20分のパーソナルプログラム</strong>を自動生成します。超音波・振動・温熱・RFの強度と時間を自動調整。介護疲れの日も、睡眠不足の朝も、あなたのコンディションに合わせてケアしてくれます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS ===== -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-5">
+            <div class="text-center mb-14 reveal">
+                <h2 class="font-serif text-2xl md:text-3xl text-gray-800">毎日の家事の合間が、<br>極上のケアタイムに。</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="flex gap-5 reveal">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center text-3xl flex-shrink-0">🛋️</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">「楽」だから続く、ハンズフリー設計</h3>
+                        <p class="text-body-lg text-gray-600">テレビを見ながら・スマホを触りながら・横になりながら使えます。本体ボタン2つのシンプル操作。20分で自動停止するので、眠ってしまっても安心です。</p>
+                    </div>
+                </div>
+                <div class="flex gap-5 reveal" style="transition-delay: 0.1s;">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl flex-shrink-0">✨</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">お腹まわりと体型を同時にケア</h3>
+                        <p class="text-body-lg text-gray-600">フォーカス超音波が皮下脂肪層（10〜20mm）に直接アプローチ。RFとマッサージがたるみ・コラーゲンをケアし、ウエストラインを整えます。</p>
+                    </div>
+                </div>
+                <div class="flex gap-5 reveal" style="transition-delay: 0.15s;">
+                    <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center text-3xl flex-shrink-0">💚</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">腰痛・冷え・婦人科系もサポート</h3>
+                        <p class="text-body-lg text-gray-600">PEMFが体内20cmの深部に届き、腰の重だるさ・腸の不調・冷え・生理痛・生理不順・更年期症状のケアをサポートします。</p>
+                    </div>
+                </div>
+                <div class="flex gap-5 reveal" style="transition-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-3xl flex-shrink-0">🛡️</div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">安心の1年間・新品交換保証付き</h3>
+                        <p class="text-body-lg text-gray-600">ウエスト60〜150cm・体重40〜130kgに対応。ソフトシリコン素材で低アレルギー性。初期不良・1年以内の故障は新品交換で対応します。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SPECS ===== -->
+    <section class="py-20 bg-warm">
+        <div class="max-w-3xl mx-auto px-5">
+            <h2 class="font-serif text-2xl md:text-3xl text-center mb-12 reveal text-gray-800">製品スペック</h2>
+            <div class="bg-white rounded-2xl overflow-hidden card-shadow reveal">
+                <table class="w-full spec-table">
+                    <tbody>
+                        <tr><td>搭載テクノロジー</td><td>7種（超音波・振動・温熱・RFラジオ波・赤外線・エアバッグマッサージ・PEMF）</td></tr>
+                        <tr><td>PEMF深達度</td><td>最大20cm（7.8Hz超低周波）</td></tr>
+                        <tr><td>使用時間</td><td>1回20分・自動停止（1日2回まで・4時間以上あけて）</td></tr>
+                        <tr><td>操作</td><td>本体ボタン2つ / OlyWatch Bluetooth連携</td></tr>
+                        <tr><td>対応サイズ</td><td>ウエスト60〜150cm・体重40〜130kg（70°〜120°自由調整）</td></tr>
+                        <tr><td>肌面素材</td><td>ソフトシリコン（低アレルギー性）・アルコール清拭可</td></tr>
+                        <tr><td>ディスプレイ</td><td>デュアルスクリーン（強度・モード・カウントダウン表示）</td></tr>
+                        <tr><td>付属品</td><td>OlyWatch 1台・スリーブカバー・日本語取扱説明書・ウエスト延長ストラップ</td></tr>
+                        <tr><td>保証</td><td>1年間・新品交換保証（初期不良含む）</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-5">
+            <h2 class="font-serif text-2xl md:text-3xl text-center mb-12 reveal text-gray-800">よくあるご質問</h2>
+            <div class="space-y-4 reveal">
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">操作が難しくないか心配です。</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">本体のボタンは2つだけ（電源兼強度調整・モード切替）。デュアルスクリーンで強度・モード・残り時間がリアルタイム表示されます。前回使用したモードを記憶するメモリー機能付きで、次回からは同じモードで自動スタート。日本語取扱説明書も付属しています。</p>
+                </details>
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">テレビを見ながら・寝ながら使えますか？</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">使えます。座った状態・横になった状態でもOKです。20分で自動停止するので、うっかり眠ってしまっても安心です。介護や子育ての合間にも、気軽に使っていただけます。</p>
+                </details>
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">1日に何回使えますか？</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">1日2回まで、4時間以上の間隔を空けてご使用ください。毎日継続することで効果が高まります。朝の家事前と夜の就寝前など、生活リズムに合わせて取り入れやすいです。</p>
+                </details>
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">更年期症状・生理トラブルにも使えますか？</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">温熱モード（PEMF＋温熱）は冷えや生理ケアに対応しています。マッサージモードは婦人科系炎症・腸の不調のサポートにも活用いただけます。体調によって感じ方に個人差があります。不安な場合はかかりつけ医にご相談ください。</p>
+                </details>
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">どのくらいの体型まで対応していますか？</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">ウエスト60〜150cm、体重40〜130kgの方に対応しています。70°〜120°の自由調整機能付きで、前かがみや動き回っても滑り落ちない設計です。延長ストラップ（30cm＋70cm）も付属しています。</p>
+                </details>
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">納期はどれくらいかかりますか？</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">通常1週間〜10日でのお届けですが、現在世界的に注文が殺到しており1〜2ヶ月ほどお時間をいただく場合がございます。お早めのご注文・お問い合わせをおすすめします。</p>
+                </details>
+
+                <details class="bg-gray-50 rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between gap-4 p-6">
+                        <span class="text-lg font-bold text-gray-800">保証・返品について教えてください。</span>
+                        <span class="faq-icon">+</span>
+                    </summary>
+                    <p class="px-6 pb-6 text-body-lg text-gray-600">1年間の故障・新品交換保証付きです。お客様都合での返品・返金は承っておりませんが、初期不良および1年以内の故障は新品交換にて対応いたします。</p>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section id="contact" class="py-28 bg-warm relative overflow-hidden">
+        <div class="max-w-3xl mx-auto px-5 text-center relative z-10 reveal">
+            <h2 class="font-serif text-3xl md:text-5xl mb-8 leading-tight text-gray-800">
+                次は、あなたが<br>
+                <span class="text-orange-500">「軽やかな自分」</span>に<br>
+                出会う番です。
+            </h2>
+            <p class="text-body-xl text-gray-600 mb-4 max-w-xl mx-auto">
+                介護・子育て・更年期…毎日頑張っているあなたへ。<br>
+                まずは20分だけ、自分のために。
             </p>
+            <p class="text-body text-gray-500 mb-12 max-w-xl mx-auto">
+                公式LINEで詳しい資料や販売案内をお受け取りください。<br>
+                無理な勧誘は一切ありません。お気軽にご相談くださいね。
+            </p>
+            <a href="#" class="btn-line px-10 py-6 text-xl shadow-2xl max-w-md mx-auto float-btn">
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
+                LINEで無料相談・登録
+            </a>
+            <p class="mt-5 text-sm text-gray-400">※ボタンを押すとLINEアプリが開きます</p>
+            <p class="mt-2 text-sm text-gray-400">現在、世界的な注文殺到により1〜2ヶ月待ちの場合がございます。お早めにご確認ください。</p>
         </div>
-    </div>
-</section>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange-50 rounded-full blur-3xl opacity-60 -z-0"></div>
+    </section>
 
-<!-- ===== CARE SECTION ===== -->
-<section class="py-20 bg-teal-s">
-    <div class="max-w-5xl mx-auto px-5">
-        <div class="text-center mb-14 reveal">
-            <h2 class="serif text-2xl md:text-3xl text-gray-800 mb-4">
-                介護・子育て・体調の変化——<br>
-                あなたの「しんどさ」に、<br class="md:hidden">寄り添いたい。
-            </h2>
-            <p class="t-lg text-gray-600 max-w-2xl mx-auto">毎日誰かのために頑張り続けているあなたが、自分のケアを後回しにしていませんか？Shakenは、そんな忙しいあなたの日常にそっと溶け込みます。</p>
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-14 bg-gray-900 text-white">
+        <div class="max-w-5xl mx-auto px-5 text-center">
+            <p class="text-2xl font-bold mb-5">OlyLife <span class="text-green-500">Shaken</span></p>
+            <p class="text-gray-400 text-base mb-6">介護・子育て・更年期と向き合うあなたの毎日に、寄り添うケアを。</p>
+            <div class="flex justify-center gap-8 mb-6">
+                <a href="#" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">プライバシーポリシー</a>
+                <a href="#" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">特定商取引法に基づく表記</a>
+            </div>
+            <p class="text-sm text-gray-600 max-w-2xl mx-auto mb-5">
+                ※本製品は健康維持を目的としたコンディショニング・ギアであり、医療機器ではありません。効果には個人差があります。日常の健康管理の一助としてご活用ください。
+            </p>
+            <p class="text-xs text-gray-700">© 2025 OlyLife Shaken Massager. All Rights Reserved.</p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    </footer>
 
-            <div class="card reveal">
-                <div class="ic bg-teal-100 mb-5">
-                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-teal-700">介護しながら使える</h3>
-                <p class="t-body text-gray-600">親のそばを離れられない方へ。ベルトタイプで両手が自由なので、介護の合間にも自分のケアをしっかり続けられます。</p>
-            </div>
-
-            <div class="card reveal" style="transition-delay:.1s;">
-                <div class="ic bg-green-100 mb-5">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-green-700">子育て中でも続けられる</h3>
-                <p class="t-body text-gray-600">お子さんと過ごしながら使えるハンズフリー設計。静音設計なのでお昼寝の邪魔をしません。20分で自動停止するから置き忘れも安心です。</p>
-            </div>
-
-            <div class="card reveal" style="transition-delay:.2s;">
-                <div class="ic bg-purple-100 mb-5">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-purple-700">更年期・体調変化に寄り添う</h3>
-                <p class="t-body text-gray-600">冷え・生理不順・気分の波・疲れやすさ。温熱モードとPEMFが体の内側からじんわり整えて、毎日の不快感をやわらげます。</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== SOLUTION ===== -->
-<section class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-5">
-        <div class="text-center mb-14 reveal">
-            <span class="text-sm font-bold tracking-widest text-green-600 uppercase block mb-3">Next Generation PEMF Device</span>
-            <h2 class="serif text-2xl md:text-3xl text-gray-800 mb-4">
-                サロン・クリニック級の<br>7テクノロジーが、自宅でできる。
-            </h2>
-            <p class="t-lg text-gray-600 max-w-2xl mx-auto">一般的な家庭用機器は1〜2種類が限界。Shakenは7種のテクノロジーを1台に凝縮。お腹の脂肪・腰の不調・冷え・肌ケアを同時に、巻くだけでアプローチします。</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-
-            <div class="card reveal" style="border-left:4px solid #4d9168;">
-                <div class="flex items-start gap-4">
-                    <div class="ic bg-green-100">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">PEMF（パルス電磁界）</h3>
-                        <p class="t-body text-gray-600 mb-3">7.8Hz超低周波PEMFが体内<strong>20cm</strong>の深部に届き、細胞のミトコンドリアを活性化。腰痛・冷え・腸の不調・婦人科系・生理痛のケアをサポートします。</p>
-                        <span class="pill bg-green-100 text-green-700">深部20cm</span>
-                        <span class="pill bg-green-100 text-green-700">7.8Hz超低周波</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card reveal" style="border-left:4px solid #3d93a8; transition-delay:.1s;">
-                <div class="flex items-start gap-4">
-                    <div class="ic bg-teal-100">
-                        <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">フォーカス超音波</h3>
-                        <p class="t-body text-gray-600 mb-3">CellBreak™技術の1MHz超音波が皮下脂肪層（10〜20mm）をターゲット。何をやっても落ちなかった<strong>お腹・腰まわりの深層脂肪</strong>に直接アプローチします。</p>
-                        <span class="pill bg-teal-100 text-teal-700">深層脂肪ターゲット</span>
-                        <span class="pill bg-teal-100 text-teal-700">1MHz</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card reveal" style="border-left:4px solid #8b6fc0; transition-delay:.15s;">
-                <div class="flex items-start gap-4">
-                    <div class="ic bg-purple-100">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">RFラジオ波 ＋ 赤外線</h3>
-                        <p class="t-body text-gray-600 mb-3">RFが皮膚下3〜5mmに届き、コラーゲン再生・たるみケア・肌のハリをサポート。赤外線は妊娠線・傷跡の改善にも対応します。</p>
-                        <span class="pill bg-purple-100 text-purple-700">コラーゲン再生</span>
-                        <span class="pill bg-purple-100 text-purple-700">たるみケア</span>
-                        <span class="pill bg-purple-100 text-purple-700">妊娠線ケア</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card reveal" style="border-left:4px solid #e8722a; transition-delay:.2s;">
-                <div class="flex items-start gap-4">
-                    <div class="ic bg-orange-100">
-                        <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-2">温熱 ＋ 振動 ＋ エアバッグマッサージ</h3>
-                        <p class="t-body text-gray-600 mb-3">熱浸透で腹部の血行・代謝を促進。エアバッグが加圧・解放を繰り返してハンドマッサージを再現。冷えやむくみのケアにも対応します。</p>
-                        <span class="pill bg-orange-100 text-orange-600">血行促進</span>
-                        <span class="pill bg-orange-100 text-orange-600">代謝アップ</span>
-                        <span class="pill bg-orange-100 text-orange-600">冷え・むくみケア</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- highlight -->
-        <div class="reveal hl-box">
-            <p class="t-lg font-bold text-orange-700">なぜ、他のケア機器と違うのか？</p>
-            <p class="t-body text-gray-600 mt-2">一般のマッサージ機は表面を揉むだけ。Shakenは7種のテクノロジーが連携して、脂肪・深部の不調・肌・血行をまとめてケア。エステに通い続ける費用と時間を、お家の20分に凝縮します。</p>
-        </div>
-    </div>
-</section>
-
-<!-- ===== 3 MODES ===== -->
-<section class="py-20 bg-green-s">
-    <div class="max-w-5xl mx-auto px-5">
-        <div class="text-center mb-14 reveal">
-            <h2 class="serif text-2xl md:text-3xl text-gray-800 mb-3">ボタン1つで切り替わる、3つのモード</h2>
-            <p class="t-body text-gray-500">その日の体調に合わせて選べます</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-
-            <div class="card-t reveal" style="border-color:#e8722a;">
-                <p class="text-xs font-bold tracking-widest text-orange-500 mb-3 uppercase">7-in-1 · Body Shaping</p>
-                <h3 class="text-xl font-bold mb-2">ボディシェイプモード</h3>
-                <p class="text-sm font-bold text-orange-500 mb-4">脂肪燃焼・ウエストシェイプ</p>
-                <p class="t-body text-gray-600 mb-4">7テクノロジー全搭載でお腹・腰まわりの脂肪に集中アプローチ。「何をやっても変わらない」を変えたい方に。</p>
-                <p class="text-xs text-gray-400">PEMF・温熱・超音波・マッサージ・振動・RFラジオ波・赤外線</p>
-            </div>
-
-            <div class="card-t reveal" style="border-color:#4d9168; transition-delay:.1s;">
-                <p class="text-xs font-bold tracking-widest text-green-600 mb-3 uppercase">5D Deep · Massage</p>
-                <h3 class="text-xl font-bold mb-2">マッサージモード</h3>
-                <p class="text-sm font-bold text-green-600 mb-4">腰痛・内臓・婦人科系ケア</p>
-                <p class="t-body text-gray-600 mb-4">PEMFで深部20cmから整えます。腰の重だるさ・腸の不調・婦人科系の不快感がある日の夜にぴったり。</p>
-                <p class="text-xs text-gray-400">PEMF・マッサージ・振動・温熱・RFラジオ波</p>
-            </div>
-
-            <div class="card-t reveal" style="border-color:#3d93a8; transition-delay:.2s;">
-                <p class="text-xs font-bold tracking-widest text-teal-600 mb-3 uppercase">2-Effect · Heat</p>
-                <h3 class="text-xl font-bold mb-2">温熱モード</h3>
-                <p class="text-sm font-bold text-teal-600 mb-4">冷え・生理ケア・更年期</p>
-                <p class="t-body text-gray-600 mb-4">お腹をじんわり温めながら血行を促進。冷え・生理痛・更年期の不快感のある日に。眠る前に巻いてそのまま就寝もOK。</p>
-                <p class="text-xs text-gray-400">PEMF・温熱</p>
-            </div>
-        </div>
-
-        <!-- AI Mode -->
-        <div class="reveal bg-white rounded-2xl p-8 md:p-10" style="box-shadow:0 4px 22px rgba(0,0,0,.07);">
-            <div class="flex flex-col md:flex-row gap-8 items-start">
-                <div class="flex-shrink-0">
-                    <p class="text-xs font-bold tracking-widest text-purple-600 mb-2 uppercase">AI Mode · OlyWatch連携</p>
-                    <h3 class="serif text-2xl text-gray-800 leading-relaxed">1000人に、<br>1000通りの<br>20分を。</h3>
-                </div>
-                <div class="md:border-l border-gray-200 md:pl-8 flex-1">
-                    <p class="t-lg text-gray-600">付属の<strong>OlyWatch</strong>をBluetooth接続すると、AIモードが起動。心拍数・血中酸素濃度・睡眠の質などを計測し、その日の体調に合わせた<strong>20分のパーソナルプログラム</strong>を自動生成します。介護疲れの日も、寝不足の朝も、更年期の体調の波がある日も——あなたのコンディションに合わせてケア強度を自動で調整します。</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== BENEFITS ===== -->
-<section class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-5">
-        <div class="text-center mb-14 reveal">
-            <h2 class="serif text-2xl md:text-3xl text-gray-800">忙しい毎日に、<br>溶け込むように使える。</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <div class="flex gap-5 reveal">
-                <div class="ic bg-orange-100 mt-1">
-                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-2">「楽」だから、続く</h3>
-                    <p class="t-lg text-gray-600">テレビを見ながら・スマホを触りながら・横になりながら使えます。ボタン2つのシンプル操作。20分で自動停止するので、うっかり眠ってしまっても大丈夫です。</p>
-                </div>
-            </div>
-
-            <div class="flex gap-5 reveal" style="transition-delay:.1s;">
-                <div class="ic bg-teal-100 mt-1">
-                    <svg class="w-6 h-6 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-2">腰痛・冷え・婦人科系もまとめてケア</h3>
-                    <p class="t-lg text-gray-600">PEMFが体内20cmの深部に届き、腰の重だるさ・腸の不調・冷え・生理痛・更年期症状のケアをサポート。これ1台で複数の悩みに対応します。</p>
-                </div>
-            </div>
-
-            <div class="flex gap-5 reveal" style="transition-delay:.15s;">
-                <div class="ic bg-purple-100 mt-1">
-                    <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-2">肌のたるみ・コラーゲンもケア</h3>
-                    <p class="t-lg text-gray-600">RFラジオ波がコラーゲン再生・たるみをケア。赤外線は妊娠線・肌荒れのサポートも。ボディシェイプだけでなく、肌質も整えます。</p>
-                </div>
-            </div>
-
-            <div class="flex gap-5 reveal" style="transition-delay:.2s;">
-                <div class="ic bg-green-100 mt-1">
-                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-2">1年間・新品交換保証付き</h3>
-                    <p class="t-lg text-gray-600">ウエスト60〜150cm・体重40〜130kgに対応。ソフトシリコン素材で低アレルギー性。初期不良・1年以内の故障は新品交換で対応します。</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== SPECS ===== -->
-<section class="py-20 bg-warm">
-    <div class="max-w-3xl mx-auto px-5">
-        <h2 class="serif text-2xl md:text-3xl text-center mb-12 reveal text-gray-800">製品スペック</h2>
-        <div class="bg-white rounded-2xl overflow-hidden reveal" style="box-shadow:0 4px 22px rgba(0,0,0,.07);">
-            <table class="w-full spec-tbl">
-                <tbody>
-                    <tr><td>搭載テクノロジー</td><td>7種（超音波・振動・温熱・RFラジオ波・赤外線・エアバッグマッサージ・PEMF）</td></tr>
-                    <tr><td>PEMF深達度</td><td>最大20cm（7.8Hz超低周波）</td></tr>
-                    <tr><td>使用時間</td><td>1回20分・自動停止（1日2回まで・4時間以上あけて）</td></tr>
-                    <tr><td>操作</td><td>本体ボタン2つ / OlyWatch Bluetooth連携</td></tr>
-                    <tr><td>対応サイズ</td><td>ウエスト60〜150cm・体重40〜130kg（70°〜120°自由調整）</td></tr>
-                    <tr><td>肌面素材</td><td>ソフトシリコン（低アレルギー性）・アルコール清拭可</td></tr>
-                    <tr><td>ディスプレイ</td><td>デュアルスクリーン（強度・モード・カウントダウン表示）</td></tr>
-                    <tr><td>付属品</td><td>OlyWatch 1台・スリーブカバー・日本語取扱説明書・ウエスト延長ストラップ</td></tr>
-                    <tr><td>保証</td><td>1年間・新品交換保証（初期不良含む）</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-5">
-        <h2 class="serif text-2xl md:text-3xl text-center mb-12 reveal text-gray-800">よくあるご質問</h2>
-        <div class="space-y-4 reveal">
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">機械が苦手でも使えますか？</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">本体のボタンは2つだけ（電源兼強度調整・モード切替）。デュアルスクリーンで強度・モード・残り時間がリアルタイム表示されます。前回使用したモードを記憶する機能付きで、次回からは同じモードで自動スタート。日本語取扱説明書も付属しています。</p>
-            </details>
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">テレビを見ながら・横になりながら使えますか？</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">使えます。座った状態・横になった状態でもOKです。20分で自動停止するので、うっかり眠ってしまっても安心です。介護や子育ての合間にも気軽にご使用いただけます。</p>
-            </details>
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">1日に何回使えますか？</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">1日2回まで、4時間以上の間隔を空けてご使用ください。毎日継続することで効果が高まります。朝の家事前と夜の就寝前など、生活リズムに合わせて取り入れやすいです。</p>
-            </details>
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">更年期・生理トラブルにも使えますか？</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">温熱モード（PEMF＋温熱）は冷えや生理ケアに対応しています。マッサージモードは婦人科系の不快感・腸の不調のサポートにも活用いただけます。体調によって感じ方に個人差があります。不安な場合はかかりつけ医にご相談ください。</p>
-            </details>
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">どのくらいの体型まで対応していますか？</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">ウエスト60〜150cm、体重40〜130kgの方に対応しています。70°〜120°の自由調整機能付きで、前かがみや動き回っても滑り落ちない設計です。ウエスト延長ストラップ（30cm＋70cm）も付属しています。</p>
-            </details>
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">いつ届きますか？</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">通常1週間〜10日でのお届けですが、現在世界的に注文が殺到しており1〜2ヶ月ほどお時間をいただく場合がございます。お早めのご注文・お問い合わせをおすすめします。</p>
-            </details>
-
-            <details class="bg-gray-50 rounded-2xl overflow-hidden">
-                <summary class="flex items-center justify-between gap-4 p-6">
-                    <span class="text-lg font-bold text-gray-800">保証・返品について教えてください。</span>
-                    <span class="faq-ic">+</span>
-                </summary>
-                <p class="px-6 pb-6 t-lg text-gray-600">1年間の故障・新品交換保証付きです。お客様都合での返品・返金は承っておりませんが、初期不良および1年以内の故障は新品交換にて対応いたします。</p>
-            </details>
-
-        </div>
-    </div>
-</section>
-
-<!-- ===== FINAL CTA ===== -->
-<section id="contact" class="py-28 bg-warm relative overflow-hidden">
-    <div class="max-w-3xl mx-auto px-5 text-center relative z-10 reveal">
-        <h2 class="serif text-3xl md:text-5xl mb-8 leading-tight text-gray-800">
-            毎日頑張るあなたへ。<br>
-            <span class="text-orange-500">今日から20分、</span><br>
-            自分のために使いませんか。
-        </h2>
-        <p class="t-xl text-gray-600 mb-4 max-w-xl mx-auto">
-            介護・子育て・更年期……自分のことは後回しにしてきたあなたへ。<br>
-            自分を大切にすることが、家族を支える力にもなります。
-        </p>
-        <p class="t-body text-gray-500 mb-12 max-w-xl mx-auto">
-            公式LINEで詳しい資料や販売案内をお受け取りください。<br>
-            無理な勧誘は一切ありません。お気軽にご相談くださいね。
-        </p>
-        <a href="#" class="btn-line px-10 py-6 text-xl shadow-2xl max-w-md mx-auto float-anim">
-            <svg class="w-7 h-7 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
-            LINEで無料相談・登録
+    <!-- ===== STICKY CTA ===== -->
+    <div class="sticky-cta">
+        <a href="#contact" class="btn-line px-5 py-3.5 text-sm shadow-2xl pulse-btn">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
+            LINEで相談
         </a>
-        <p class="mt-5 text-sm text-gray-400">※ボタンを押すとLINEアプリが開きます</p>
-        <div class="mt-4 inline-block bg-orange-50 border border-orange-200 rounded-xl px-5 py-3">
-            <p class="text-sm font-bold text-orange-700">
-                <svg class="inline w-4 h-4 mr-1 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                現在1〜2ヶ月待ちの場合があります。在庫確認はお早めに。
-            </p>
-        </div>
     </div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange-50 rounded-full blur-3xl opacity-60 -z-0"></div>
-</section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="py-14 bg-gray-900 text-white">
-    <div class="max-w-5xl mx-auto px-5 text-center">
-        <p class="text-2xl font-bold mb-4">OlyLife <span class="text-green-500">Shaken</span></p>
-        <p class="text-gray-400 t-body mb-6">介護・子育て・更年期と向き合うあなたの毎日に、寄り添うケアを。</p>
-        <div class="flex justify-center gap-8 mb-6">
-            <a href="#" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">プライバシーポリシー</a>
-            <a href="#" class="text-sm text-gray-500 hover:text-gray-300 transition-colors">特定商取引法に基づく表記</a>
-        </div>
-        <p class="text-sm text-gray-600 max-w-2xl mx-auto mb-4">
-            ※本製品は健康維持を目的としたコンディショニング・ギアであり、医療機器ではありません。効果には個人差があります。日常の健康管理の一助としてご活用ください。
-        </p>
-        <p class="text-xs text-gray-700">© 2025 OlyLife Shaken Massager. All Rights Reserved.</p>
-    </div>
-</footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-<!-- ===== STICKY LINE BUTTON ===== -->
-<div id="sticky-line">
-    <a href="#contact" class="btn-line px-5 py-3.5 text-sm shadow-2xl pulse">
-        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.047c-.052.31-.251 1.215 1.076.663 1.325-.553 7.151-4.212 9.756-7.202 1.838-2.008 2.207-3.801 2.207-5.833z"/></svg>
-        LINEで相談
-    </a>
-</div>
-
-<script>
-    // scroll reveal
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // FAQ icons
-    document.querySelectorAll('details').forEach(d => {
-        d.addEventListener('toggle', () => {
-            const ic = d.querySelector('.faq-ic');
-            ic.textContent = d.open ? '×' : '+';
+        // FAQ toggle icon
+        document.querySelectorAll('details').forEach(detail => {
+            detail.addEventListener('toggle', () => {
+                const icon = detail.querySelector('.faq-icon');
+                icon.textContent = detail.open ? '×' : '+';
+                if (detail.open) {
+                    icon.style.background = '#f07c3c';
+                    icon.style.color = '#fff';
+                    icon.style.borderColor = '#f07c3c';
+                } else {
+                    icon.style.background = '';
+                    icon.style.color = '#f07c3c';
+                    icon.style.borderColor = '#f07c3c';
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
